@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\PeliculaNotification;
 use Notification;
 use Input;
+use Auth;
 
 class Pelicula extends Model
 {
@@ -16,12 +17,18 @@ use SoftDeletes;
 protected $primaryKey="idPelicula" ;
 protected $table="peliculas";
 public $timestamps=true;
-public $fillable = ['titulo','duracion','anio','imagen'];
+public $fillable = ['titulo','duracion','anio','imagen', 'idUser'];
 
 protected $dates = ['deleted_at'];
 
 
 protected $hidden = ['pivot'];
+
+public function usuario()
+{
+    return $this->belongsTo('\App\User', 'idUser');
+}
+
 
 public function generos(){
     return $this->belongsToMany('\App\Genero','peliculas_generos','idPelicula','idGenero');
@@ -73,6 +80,7 @@ public static function findGenero($array, $idGenero)
 
 
         static::creating(function ($pelicula) {
+            $pelicula->idUser = Auth::id();
             if (Input::hasFile('imagen') && $pelicula->imagen != null) {
                 $image = Input::file('imagen');
                 $pelicula->imagen = $image->store('public/peliculas');
@@ -83,6 +91,9 @@ public static function findGenero($array, $idGenero)
             $user = Auth::user();
             $user->notify(new peliculaNotification($pelicula, true));
         });
+
+ 
+
 
     }
 
