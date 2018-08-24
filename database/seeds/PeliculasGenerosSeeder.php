@@ -11,7 +11,7 @@ class PeliculasGenerosSeeder extends Seeder
      */
     public function run()
     {
-      factory(App\Pelicula::class, 20)->create()->each(function($p)
+      factory(App\Pelicula::class, 80)->create()->each(function($p)
     {
         //codigo detach
         $p->generos()->attach(factory(App\Genero::class,3)->create());
