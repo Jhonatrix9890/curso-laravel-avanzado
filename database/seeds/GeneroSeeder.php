@@ -11,6 +11,6 @@ class GeneroSeeder extends Seeder
      */
     public function run()
     {
-       factory(App\Genero::Class, 50)->create();
+       factory(App\Genero::Class, 30)->create();
     }
 }

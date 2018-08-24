@@ -11,7 +11,7 @@ class PeliculasActoresSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Pelicula::class, 200)->create()->each(function($a)
+        factory(App\Pelicula::class, 80)->create()->each(function($a)
         {
             $a->actores()->attach(factory(App\Actor::class,3)->create());
         });
