@@ -64,7 +64,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{strpos(Request::path(), 'actores') !== false ?'active':''}}"
-                             href="{{ url('generos') }}">@lang("messages.actors")</a>
+                             href="{{ url('actores') }}">@lang("messages.actors")</a>
                         </li>
                         @endauth
                     </ul>
