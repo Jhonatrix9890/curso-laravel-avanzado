@@ -29,11 +29,11 @@
                         <th scope="col">Título</th>
                         <th scope="col">Año</th>
                         <th scope="col">Duración</th>
-                        <th scope="col">Géneros</th>
-                        
+                        <th scope="col">Géneros</th>                   
                         
                         <th scope="col">Actores</th>
                         <th scope="col">Imagen</th>
+                        <th scope="col">Usuario</th>
                    
                         </tr>
                     </thead>
@@ -60,6 +60,9 @@
                                     @endif
                                 </td>
                                 <td>
+                                <td>
+                                    {{$pel->usuario->name}}
+                                </td>
 
                                 @if ($pel->trashed())                              
                                      <a title="Restaurar" data-toggle="modal" data-target="#modalRestore" 

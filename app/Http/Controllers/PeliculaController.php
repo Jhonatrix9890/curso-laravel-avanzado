@@ -29,7 +29,7 @@ class PeliculaController extends Controller
         return view('panel.peliculas.index', compact('peliculas'));
  */
          $query=Pelicula::query();
-         $query=$query->withCount('actores','generos')->orderByDesc('anio')->orderBy('titulo');
+         $query=$query->withCount('actores','generos')->orderByDesc('anio')->with('usuario:id, name')->orderBy('titulo');
           
          if($request->display == "all"){
              $query =$query->withTrashed();

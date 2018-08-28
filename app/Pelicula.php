@@ -26,7 +26,7 @@ protected $hidden = ['pivot'];
 
 public function usuario()
 {
-    return $this->belongsTo('\App\User', 'idUser');
+    return $this->belongsTo('\App\User', 'idUser')->withDefault(["name"=>"Anónimo"]);
 }
 
 
