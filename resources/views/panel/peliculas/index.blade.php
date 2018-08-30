@@ -32,8 +32,7 @@
                         <th scope="col">Géneros</th>                   
                         
                         <th scope="col">Actores</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Usuario</th>
+                        <th scope="col">Imagen</th>                       
                    
                         </tr>
                     </thead>
@@ -60,12 +59,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                <td>
-                                    {{$pel->usuario->name}}
-                                </td>
+                             
 
                                 @if ($pel->trashed())                              
-                                     <a title="Restaurar" data-toggle="modal" data-target="#modalRestore" 
+                                @can('update', $pel)     
+                                        <a title="Restaurar" data-toggle="modal" data-target="#modalRestore" 
                                         data-name="{{$pel->titulo}}" href="#"
                                         data-action="{{route('peliculas.restore',$pel->idPelicula)}}"
                                         class="btn btn-success btn-xs"><i class="fa fa-archive" aria-hidden="true"></i></a>
@@ -74,14 +72,18 @@
                                         data-action="{{route('peliculas.destroy',$pel->idPelicula)}}"
                                         class="btn btn-warning btn-xs"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
 
-                                @else
+                                @endcan  
+                                 @else
                                     <a title="Ver" href="{{route('peliculas.show',$pel->idPelicula)}}" class="btn btn-info btn-xs"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
-                                    <a title="Editar" href="{{route('peliculas.edit',$pel->idPelicula)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                    <a title="Enviar a la papelera" data-toggle="modal" data-target="#modalTrash" 
-                                    data-name="{{$pel->titulo}}" href="#"
-                                    data-action="{{route('peliculas.trash',$pel->idPelicula)}}"
-                                    class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                @endif
+                                    
+                                    @can('update', $pel)
+                                        <a title="Editar" href="{{route('peliculas.edit',$pel->idPelicula)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a title="Enviar a la papelera" data-toggle="modal" data-target="#modalTrash" 
+                                        data-name="{{$pel->titulo}}" href="#"
+                                        data-action="{{route('peliculas.trash',$pel->idPelicula)}}"
+                                        class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    @endcan    
+                                 @endif
                                 </td>
                             </tr>
                         @endforeach

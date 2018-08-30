@@ -11,4 +11,7 @@ return [
     'trash' => 'мусор',
     'gender_trash' => 'гендерный :name мусор',
     'languages' => 'языки',
+    'users' => 'пользователи',
+    'settings' => 'конфигурации',
+    'reports' => 'отчеты',
 ];

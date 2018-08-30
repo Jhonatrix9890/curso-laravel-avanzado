@@ -51,21 +51,34 @@
                     <ul class="nav nav-tabs mr-auto">
                         @auth 
                         <li class="nav-item">
-                            <a class="nav-link {{strpos(Request::path(), 'home') !== false ? 'active' : ''}}"
+                            <a class="nav-link {{Route::currentRouteName() != 'home' ?: 'active'}}"
                              href="{{ url('home') }}">@lang("messages.home")</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{strpos(Request::path(), 'peliculas') !== false ? 'active' : ''}}"
+                            <a class="nav-link {{Route::currentRouteName() != 'peliculas.index' ?: 'active'}}"
                              href="{{ url('peliculas') }}">@lang("messages.movies")</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{strpos(Request::path(), 'generos') !== false ?'active':''}}"
+                            <a class="nav-link {{Route::currentRouteName() != 'generos.index' ?: 'active'}}"
                              href="{{ url('generos') }}">@lang("messages.genders")</a>
                         </li>
+                        @role('admin')
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::currentRouteName() != 'usuarios.index' ?: 'active'}}"
+                                href="{{ url('usuarios') }}">@lang("messages.users")</a>
+                            </li>
+                       
                         <li class="nav-item">
-                            <a class="nav-link {{strpos(Request::path(), 'actores') !== false ?'active':''}}"
-                             href="{{ url('actores') }}">@lang("messages.actors")</a>
+                            <a class="nav-link {{Route::currentRouteName() != 'reportes.index' ?: 'active'}}"
+                            href="{{ url('reportes') }}">@lang("messages.reports")</a>
                         </li>
+                      
+                        
+                        <li class="nav-item">
+                            <a class="nav-link {{Route::currentRouteName() != 'passport.index' ?: 'active'}}"
+                            href="{{ url('passport') }}">Passport</a>
+                        </li>
+                        @endrole
                         @endauth
                     </ul>
 
@@ -87,7 +100,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLanguages">
                                     @foreach (Config::get('app.available_locale') as $lang)
                                         @if ($lang != \LaravelLocalization::getCurrentLocale())
-                                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}">@lang("languages.$lang")</a>
+                                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}">@lang("languages.".$lang)</a>
                                         @endif
                                     @endforeach
                                 </div>
@@ -98,6 +111,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('settings') }}">
+                                         @lang("messages.settings")
+                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -121,5 +137,6 @@
     </div>
     @stack("scripts")
 </body>
+
 
 </html>

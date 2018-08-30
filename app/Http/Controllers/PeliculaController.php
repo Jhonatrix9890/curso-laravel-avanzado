@@ -29,7 +29,7 @@ class PeliculaController extends Controller
         return view('panel.peliculas.index', compact('peliculas'));
  */
          $query=Pelicula::query();
-         $query=$query->withCount('actores','generos')->orderByDesc('anio')->with('usuario:id, name')->orderBy('titulo');
+         $query=$query->withCount('actores','generos')->orderByDesc('anio')->orderBy('titulo');
           
          if($request->display == "all"){
              $query =$query->withTrashed();
@@ -130,6 +130,7 @@ class PeliculaController extends Controller
     {
       
         try{
+            $this->authorize('update', Pelicula::findOrFail($id));
             $pelicula=Pelicula::updateOrCreate(['idPelicula'=>$id],$request->except('idGenero'));
             $pelicula->generos()->sync($request->idGenero);
             $pelicula->actores()->sync($request->idActor);
@@ -181,6 +182,12 @@ class PeliculaController extends Controller
         } catch (Exception $e) {
             return back()->withErrors(['exception' => $e->getMessage()]);
         }       
+
+    }
+    public function findMovie($idPelicula){
+        $pelicula= Pelicula::where('idPelicula',$idPelicula)
+        ->firstOrFail(['idPelicula', 'titulo','duracion', 'anio', 'idUser']);
+        return $pelicula->toJson();
 
     }
 

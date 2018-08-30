@@ -74,6 +74,7 @@ return [
         'array'   => 'El campo :attribute debe contener :size elementos.',
     ],
     'string'               => 'El campo :attribute debe contener solo caracteres.',
+    'strong_password' =>    'La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un número y uno de los siguientes caracteres "!$%&?@#._-".',
     'timezone'             => 'El campo :attribute debe contener una zona válida.',
     'unique'               => 'El elemento :attribute ya está en uso.',
     'url'                  => 'El formato de :attribute no corresponde con el de una URL válida.',

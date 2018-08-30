@@ -128,6 +128,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Zizaco\Entrust\EntrustServiceProvider::class,
         Berkayk\OneSignal\OneSignalServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -151,6 +152,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Czim\Service\ServiceServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -180,6 +182,7 @@ return [
 
     'aliases' => [
 
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'App' => Illuminate\Support\Facades\App::class,
@@ -220,6 +223,7 @@ return [
         'Twilio' => Aloha\Twilio\Support\Laravel\Facade::class,
         'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 
     ],
