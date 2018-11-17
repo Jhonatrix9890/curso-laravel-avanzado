@@ -62,6 +62,10 @@
                             <a class="nav-link {{Route::currentRouteName() != 'generos.index' ?: 'active'}}"
                              href="{{ url('generos') }}">@lang("messages.genders")</a>
                         </li>
+                        <li class="nav-item">
+                                <a class="nav-link {{Route::currentRouteName() != 'actores.index' ?: 'active'}}"
+                                 href="{{ url('actores') }}">@lang("messages.actors")</a>
+                         </li>    
                         @role('admin')
                             <li class="nav-item">
                                 <a class="nav-link {{Route::currentRouteName() != 'usuarios.index' ?: 'active'}}"

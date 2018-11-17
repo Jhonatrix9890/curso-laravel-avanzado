@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Genero;
+use App\Pelicula;
+use App\Charts\PeliculaChart;
+
+
 
 class HomeController extends Controller
 {
@@ -23,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $chart = new PeliculaChart;
+        $chart2 = new PeliculaChart;
+        return view('home', compact("chart","chart2"));
+
     }
 }

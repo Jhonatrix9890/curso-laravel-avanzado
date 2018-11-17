@@ -30,6 +30,8 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
+Vue.component("actores", require("./components/Actors.vue"));
+
 const app = new Vue({
     el: '#app'
 });

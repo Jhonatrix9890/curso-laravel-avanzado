@@ -33,6 +33,11 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@
             ->middleware('role:admin');
             Route::get('settings', 'UserController@settings')->name('settings');
             Route::post('change_password', 'UserController@change_password')->name('settings.store');
+
+            Route::get('actores', function () {
+                return view('panel.actores.index');
+            })->name('actores.index');
+    
         });
     });
     Route::group(["middleware" => "auth"], function () {       

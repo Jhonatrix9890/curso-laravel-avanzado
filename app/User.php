@@ -38,17 +38,5 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\Role','rol_user');
     } */
 
-    protected static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($usuario) {
-                $faker= Faker\Factory::create();
-                $password=$faker->password();
-                info($password);
-                $usuario->password=bcrypt($password);
-            
-        });
-
-    }
 }

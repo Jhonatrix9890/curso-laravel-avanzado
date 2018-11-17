@@ -21,4 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     
 Route::get('movie/{idPelicula}', 'PeliculaController@findMovie');
 Route::get('api_actores', 'ServiceController@getActores');
-Route::get('pelicula/{idPelicula}', 'ServiceController@getMovie');
+Route::get('todos', 'ServiceController@getTodos');
+Route::get('actores', 'ActorController@index_api');
+Route::post('actores', 'ActorController@store');
+

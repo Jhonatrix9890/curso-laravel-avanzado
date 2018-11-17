@@ -25,8 +25,9 @@ class ActorRequest extends FormRequest
     {
      
         return [
-            'nombres'=>'required|string|max:30',
-            'apellidos'=>'required|string|max:30',
+       
+             'nombres' => 'required|string|max:30|min:3',
+            'apellidos' => 'required|string|max:30|min:3',   
             'idPelicula' => 'nullable|array',
             'imagen'=>'nullable|file|mimes:jpeg,png,jpg,JPG|dimensions:min_width=400,min_height=400,max_width=2000,max_height=2000|max:2048'
             

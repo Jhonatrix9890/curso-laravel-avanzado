@@ -44,4 +44,12 @@ class ServiceController extends Controller
 
            return  $response->getBody();
         }
+
+        public function getTodos()
+        {
+            $client = new Client();
+            $response = $client->get('https://jsonplaceholder.typicode.com/todos');
+            return json_decode($response->getBody());
+        }
+    
 }

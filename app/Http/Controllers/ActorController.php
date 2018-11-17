@@ -10,7 +10,7 @@ use Auth;
 use App\Jobs\ProcessEmail;
 use App\Notifications\ActorNotification;
 use Notification;
-use App\Http\Requests\GeneroRequest;
+use App\Http\Requests\ActorRequest;
 use Lang;
 
 
@@ -23,13 +23,17 @@ class ActorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index_api()
     {
         // $actores =  Actor::withCount('peliculas')->orderByDesc('nombres')
         // ->paginate(10);
         // return view('panel.actores.index', compact('actores'));
 
-        $query=Actor::query();
+
+        $actores = Actor::withCount('peliculas')->orderBy('apellidos')->get();
+        return $actores->toJson();
+
+       /*  $query=Actor::query();
         $query=$query->withCount('peliculas')->orderBy('nombres');  
         if($request->display == "all"){
             $query =$query->withTrashed();
@@ -38,7 +42,7 @@ class ActorController extends Controller
         }
         $actores = $query->paginate(10);
         return view('panel.actores.index', compact('actores'));
-
+ */
     }
 
     /**
@@ -58,21 +62,23 @@ class ActorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActorRequest $request)
     {
-         try{
+
+        return Actor::create($request->all());
+/*          try{
             $actor=Actor::create($request->except(['idPelicula']));
-/*             if ($request->hasFile('imagen')&& $request->imagen!=null) {
+/*            if ($request->hasFile('imagen')&& $request->imagen!=null) {
                 $actor->imagen = $request->file('imagen')->store('public/actores');
                 $actor->save();
             }
-            */
+         //   
             $actor->peliculas()->sync($request->idPelicula);
 
             return redirect('actores')->with('success','Actor registrado');
         }catch(Exception $e){
             return back()->withErrors(['exception'=>$e->getMessage()])->withInput();
-        } 
+        }  */
       
        
     }
